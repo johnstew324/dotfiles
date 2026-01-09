@@ -1,0 +1,9 @@
+# OS files
+.DS_Store
+*.swp
+*.swo
+
+# Secrets - never commit these
+*.secret
+*credentials*
+*token*
