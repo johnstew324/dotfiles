@@ -1,0 +1,24 @@
+* {
+    font-family: "Ubuntu Sans", sans-serif;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #cdd6f4;
+    background: transparent;
+    border: none;
+}
+
+#workspaces button.focused {
+    background-color: #45475a;
+}
+
+#clock, #cpu, #memory, #pulseaudio, #tray {
+    padding: 0 10px;
+}

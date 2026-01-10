@@ -3,7 +3,10 @@
 *.swp
 *.swo
 
-# Secrets - never commit these
+# Secrets and credentials
 *.secret
 *credentials*
 *token*
+.env
+*.key
+*.pem
