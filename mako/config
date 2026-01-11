@@ -1,0 +1,11 @@
+font=Ubuntu Sans 11
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#6272a4
+border-size=2
+border-radius=8
+padding=10
+margin=10
+width=350
+default-timeout=5000
+layer=overlay
