@@ -10,7 +10,6 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 
 
-
 # ============================================================================
 # VARIABLES
 # ============================================================================
@@ -32,7 +31,7 @@ set $browser google-chrome
 set $editor code
 set $discord discord
 set $spotify spotify
-set $filemanager kitty -e ranger
+set $filemanager kitty --class files-manager -e ranger
 
 
 # ============================================================================
@@ -40,6 +39,7 @@ set $filemanager kitty -e ranger
 # ============================================================================
 
 output DP-3 mode 1920x1080@144.001Hz
+output DP-3 bg ~/dotfiles/wallpapers/a_foggy_forest_with_trees_03.jpg fill
 
 # ============================================================================
 # CRITICAL KEYBINDINGS (so you don't get stuck)
@@ -129,6 +129,30 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 
 
+# ============================================================================
+# WORKSPACE ASSIGNMENTS
+# ============================================================================
+
+# 1 = Terminal/Coding (default, no assignment needed)
+
+# 2 = Browser
+assign [class="Google-chrome"] workspace 2
+assign [app_id="google-chrome"] workspace 2
+
+# 3 = Files/Misc
+assign [app_id="files-manager"] workspace 3
+
+# 4 = Monitoring
+assign [app_id="btop-monitor"] workspace 4
+
+# 5 = Communication
+assign [class="discord"] workspace 5
+assign [class="Microsoft Teams"] workspace 5
+assign [app_id="Zoom"] workspace 5
+
+# 6 = Music
+assign [class="Spotify"] workspace 6
+
 
 # ============================================================================
 # LAYOUT
@@ -216,6 +240,16 @@ exec waybar
 
 exec mako
 
+exec kitty --class btop-monitor -e btop
+
+
+# ============================================================================
+# SCRATCHPAD
+# ============================================================================
+
+bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+grave scratchpad show
+
 
 
 
@@ -231,6 +265,11 @@ for_window [title="File Upload"] floating enable
 for_window [title="Save As"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_type="dialog"] floating enable
+
+
+
+
+
 
 
 
