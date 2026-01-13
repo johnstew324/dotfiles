@@ -39,7 +39,7 @@ set $filemanager kitty --class files-manager -e ranger
 # ============================================================================
 
 output DP-3 mode 1920x1080@144.001Hz
-output DP-3 bg ~/dotfiles/wallpapers/a_foggy_forest_with_trees_03.jpg fill
+output DP-3 bg ~/dotfiles/wallpapers/yosemite_night_peak.jpg fill
 
 # ============================================================================
 # CRITICAL KEYBINDINGS (so you don't get stuck)
@@ -209,17 +209,17 @@ bindsym $mod+r mode "resize"
 
 
 # ============================================================================
-# SCREENSHOTS
+# SCREENSHOTS (file + clipboard)
 # ============================================================================
 
-# Full screen screenshot
-bindsym Print exec grim ~/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png
+# Make sure the directory exists
+exec mkdir -p ~/Pictures/Screenshots
 
-# Select area screenshot
-bindsym $mod+shift+s exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png
+# Full screen screenshot → file + clipboard
+bindsym Print exec grim - | tee ~/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png | wl-copy
 
-
-
+# Select area screenshot → file + clipboard
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png | wl-copy
 
 
 

@@ -1,24 +1,176 @@
 * {
-    font-family: "Ubuntu Sans", sans-serif;
-    font-size: 14px;
+    font-family: "FiraCode Nerd Font", sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
 }
 
 window#waybar {
-    background-color: #1e1e2e;
-    color: #cdd6f4;
+    background-color: #1E1E2E;
+    color: #CDD6F4;
+    border: none;
+}
+
+/* Ubuntu logo */
+#custom-logo {
+    background-color: #1E1E2E;
+    color: #F38BA8;
+    padding: 0 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Workspaces */
+#workspaces {
+    background-color: #1E1E2E;
+    margin: 0;
 }
 
 #workspaces button {
     padding: 0 8px;
-    color: #cdd6f4;
-    background: transparent;
-    border: none;
+    color: #6C7086;
+    background-color: transparent;
+    transition: all 0.2s;
 }
 
 #workspaces button.focused {
-    background-color: #45475a;
+    color: #CDD6F4;
+    background-color: #45475A;
 }
 
-#clock, #cpu, #memory, #pulseaudio, #tray {
+#workspaces button.urgent {
+    color: #F38BA8;
+    background-color: #45475A;
+}
+
+#workspaces button:hover {
+    background-color: #313244;
+    color: #BAC2DE;
+}
+
+/* Mode indicator */
+#mode {
+    background-color: #F38BA8;
+    color: #1E1E2E;
+    padding: 0 12px;
+    font-weight: bold;
+}
+
+/* Clock */
+#clock {
+    background-color: #1E1E2E;
+    color: #CDD6F4;
+    padding: 0 16px;
+    font-weight: 500;
+}
+
+#clock:hover {
+    background-color: #313244;
+}
+
+/* Right modules base */
+#network,
+#cpu,
+#temperature,
+#memory,
+#disk,
+#pulseaudio {
+    background-color: #1E1E2E;
+    padding: 0 12px;
+    transition: all 0.2s;
+}
+
+/* Individual module colors */
+#network {
+    color: #94E2D5;  /* Teal */
+}
+
+#network.disconnected {
+    color: #F38BA8;  /* Red */
+}
+
+#cpu {
+    color: #89B4FA;  /* Blue */
+}
+
+#temperature.cpu {
+    color: #F9E2AF;  /* Yellow */
+}
+
+#temperature.gpu {
+    color: #FAB387;  /* Peach */
+}
+
+#temperature.critical {
+    color: #F38BA8;
+    animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.6; }
+}
+
+#memory {
+    color: #A6E3A1;  /* Green */
+}
+
+#memory.warning {
+    color: #F9E2AF;
+}
+
+#memory.critical {
+    color: #F38BA8;
+}
+
+#disk {
+    color: #F5C2E7;  /* Pink */
+}
+
+#disk.warning {
+    color: #F9E2AF;
+}
+
+#disk.critical {
+    color: #F38BA8;
+}
+
+#pulseaudio {
+    color: #CBA6F7;  /* Mauve */
+}
+
+#pulseaudio.muted {
+    color: #6C7086;
+}
+
+#pulseaudio.microphone {
+    color: #EBA0AC;  /* Flamingo */
+}
+
+#pulseaudio.source-muted {
+    color: #6C7086;
+}
+
+/* Hover effects */
+#network:hover,
+#cpu:hover,
+#temperature:hover,
+#memory:hover,
+#disk:hover,
+#pulseaudio:hover {
+    background-color: #313244;
+}
+
+/* System tray */
+#tray {
+    background-color: #1E1E2E;
     padding: 0 10px;
+}
+
+#tray > .passive {
+    opacity: 0.7;
+}
+
+#tray > .needs-attention {
+    color: #F38BA8;
 }
