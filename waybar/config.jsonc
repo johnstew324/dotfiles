@@ -1,33 +1,28 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
+    "height": 30,
     "spacing": 0,
     
-    "modules-left": ["custom/logo", "sway/workspaces", "sway/mode"],
-    "modules-center": ["clock"],
-    "modules-right": ["network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "pulseaudio", "pulseaudio#microphone", "tray"],
-    
+    "modules-left": ["custom/logo", "sway/workspaces", "sway/window", "sway/mode"],
+    "modules-center": ["clock", "tray"],
+    "modules-right": ["custom/night-light","network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "backlight", "pulseaudio", "pulseaudio#microphone"],
+    // laptop modules
+    // "modules-right": ["custom/power-profile", "backlight", "battery", "custom/night-light", "network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "pulseaudio", "pulseaudio#microphone", "tray"],
     // Ubuntu logo
     "custom/logo": {
         "format": "",
         "tooltip": false
     },
+
+
+
     
-    // Workspaces
     "sway/workspaces": {
-        "format": "{icon}",
+        "format": "{name}",
         "format-icons": {
-            "1": "",  // code
-            "2": "󰈹",  // browser
-            "3": "󰉋",  // files
-            "4": "",  // monitoring
-            "5": "",  // communication
-            "6": "󰓇",  // music
-            "7": "",
-            "8": "",
-            "9": "",
-            "10": "",
+            "urgent": "",
+            "focused": "",
             "default": ""
         },
         "persistent-workspaces": {
@@ -39,7 +34,27 @@
             "6": []
         }
     },
-    
+
+    // Shows active window title/icon
+    "sway/window": {
+        "format": "  {}",
+        "max-length": 50,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "󰈹 $1",
+            "(.*) - Google Chrome": "󰊯 $1",
+            "(.*) - Visual Studio Code": " $1",
+            "kitty": " Terminal",
+            "ranger": "󰉋 Files",
+            "btop": " Monitor",
+            "Spotify": "󰓇 Spotify",
+            "Discord": " Discord"
+        }
+    },
+
+
+
+
+
     // Clock
     "clock": {
         "format": "  {:%H:%M   %a %d %b}",
@@ -55,20 +70,25 @@
         }
     },
     
+
+
     // Network
     "network": {
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "󰈀",
+        "format-wifi": "󰖩  {signalStrength}%",
+        "format-ethernet": "󰈀  LAN",
         "format-disconnected": "󰖪",
-        "tooltip-format-wifi": "  {essid}\n{ipaddr}\nSignal: {signalStrength}%",
+
+        "tooltip-format-wifi": "󰖩  {essid}\n{ipaddr}\nSignal: {signalStrength}%",
         "tooltip-format-ethernet": "󰈀  {ifname}\n{ipaddr}",
+        "tooltip-format-disconnected": "󰖪  Disconnected",
+
         "on-click": "nm-connection-editor",
         "interval": 5
     },
+
     
     // CPU
     "cpu": {
-        // add logo
         "format": " {usage}%",
         "interval": 2,
         "tooltip-format": "CPU Usage: {usage}%",
@@ -78,22 +98,31 @@
     // CPU Temperature (hwmon0 = k10temp)
     "temperature#cpu": {
         "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
-        // add temperature icon
-        "format": "  {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", "", "", ""], // coolest to hottest
+
+        "temperature-thresholds": [40, 55, 70, 80],
         "critical-threshold": 80,
-        "format-critical": "  {temperatureC}°C",
         "tooltip-format": "CPU Temp: {temperatureC}°C",
+
         "on-click": "swaymsg workspace 4"
     },
     
+
+
     // GPU Temperature (hwmon1 = amdgpu)
     "temperature#gpu": {
         "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-        "format": "󰢮  {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        
+        "format-icons": ["", "", "", "", ""], 
+        
+        "temperature-thresholds": [45, 60, 75, 85],
+
         "critical-threshold": 85,
-        "format-critical": "󰢮  {temperatureC}°C",
         "tooltip-format": "GPU Temp: {temperatureC}°C"
     },
+
     
     // Memory
     "memory": {
@@ -133,7 +162,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["󰕿", "󰖀", "󰕾"]  // 0-20%, 20-40%, 40-60%, 60-80%, 80-100%
+            "default": ["󰖁", "󰕿", "󰖀", "󰕾"]  // 0-20%, 20-40%, 40-60%, 60-80%, 80-100%
         },
         "on-click": "pavucontrol",
         "on-click-middle": "~/dotfiles/scripts/audio_output_switch.sh",
@@ -142,9 +171,6 @@
         "tooltip-format": "{desc}: {volume}%"
     },
 
-
-
-    
     // Microphone
     "pulseaudio#microphone": {
         "format": "{format_source}",
@@ -158,8 +184,65 @@
         "scroll-step": 2
     },
 
+
+
+    // Night Light Status
+    "custom/night-light": {
+        "format": "{}",
+        "exec": "~/dotfiles/waybar/scripts/night-light-status.sh",
+        "on-click": "~/dotfiles/sway/scripts/toggle-night-light.sh",
+        "interval": 2,  // Check every 2 seconds instead of 5
+        "signal": 8,
+        "tooltip": false
+    },
     
 
+
+/// LAPTOP MODULES ///
+
+    // Backlight module - only appears if hardware exists
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "tooltip-format": "Brightness: {percent}%"
+    },
+
+    // Battery
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}\nPower: {power}W"
+    },
+
+    // Bluetooth
+    "bluetooth": {
+        "format": "󰂯 {status}",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+
+    // Power profiles (performance/balanced/power-saver)
+    "custom/power-profile": {
+        "format": "{}",
+        "exec": "~/dotfiles/waybar/scripts/power-profile-status.sh",
+        "on-click": "~/dotfiles/waybar/scripts/power-profile-cycle.sh && pkill -RTMIN+9 waybar",
+        "interval": 10,
+        "signal": 9,
+        "tooltip": true
+    },
 
     
     // System tray

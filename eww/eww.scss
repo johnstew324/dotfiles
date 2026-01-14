@@ -1,0 +1,136 @@
+* {
+  all: unset;
+  font-family: "FiraCode Nerd Font";
+}
+
+.volume-container {
+  background-color: #181825;
+  border: 1px solid #313244;
+  border-radius: 12px;
+  padding: 16px;
+  color: #CDD6F4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #313244;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #CDD6F4;
+}
+
+.volume-section,
+.mic-section {
+  padding: 8px 0;
+}
+
+.slider-header {
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.slider-header .icon {
+  font-size: 16px;
+  margin-right: 8px;
+  min-width: 20px;
+}
+
+.slider-header .label {
+  font-size: 13px;
+  color: #BAC2DE;
+}
+
+.slider-header .value {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: bold;
+  color: #89B4FA;
+  min-width: 40px;
+  text-align: right;
+}
+
+scale {
+  min-height: 30px;
+  min-width: 300px;
+}
+
+trough {
+  min-height: 6px;
+  border-radius: 3px;
+  background-color: #313244;
+}
+
+highlight {
+  border-radius: 3px;
+}
+
+.volume-slider highlight {
+  background: linear-gradient(90deg, #CBA6F7, #B4BEFE);
+}
+
+.mic-slider highlight {
+  background: linear-gradient(90deg, #F5C2E7, #EBA0AC);
+}
+
+slider {
+  min-height: 16px;
+  min-width: 16px;
+  border-radius: 50%;
+  background-color: #CDD6F4;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s;
+}
+
+slider:hover {
+  min-height: 18px;
+  min-width: 18px;
+}
+
+.separator {
+  min-height: 1px;
+  background-color: #313244;
+  margin: 8px 0;
+}
+
+.outputs-section {
+  margin-top: 4px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #BAC2DE;
+  padding: 0 4px 4px 4px;
+}
+
+scroll {
+  border-radius: 6px;
+}
+
+.output-button {
+  padding: 10px 12px;
+  margin: 2px 0;
+  background-color: #1E1E2E;
+  border-radius: 6px;
+  color: #CDD6F4;
+  font-size: 12px;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+
+.output-button:hover {
+  background-color: #313244;
+  border-color: #45475A;
+}
+
+.output-button.active {
+  background-color: #313244;
+  color: #A6E3A1;
+  border-color: #A6E3A1;
+  font-weight: bold;
+}

@@ -1,0 +1,71 @@
+(defwindow volume-popup
+  :monitor 0
+  :geometry (geometry :x "10px"
+                      :y "38px"
+                      :width "340px"
+                      :anchor "top right")
+  :stacking "overlay"
+  :exclusive false
+  (volume-widget))
+
+(defwidget volume-widget []
+  (box :class "volume-container"
+       :orientation "v"
+       :space-evenly false
+       :spacing 10
+    
+    (box :class "header"
+         :orientation "h"
+      (label :text "Audio Control" :class "title"))
+    
+    (box :class "volume-section"
+         :orientation "v"
+         :spacing 6
+      (box :class "slider-header"
+           :orientation "h"
+        (label :text "󰕾" :class "icon")
+        (label :text "Volume" :class "label")
+        (label :text "${volume}%" :class "value"))
+      
+      (scale :class "volume-slider"
+             :value volume
+             :min 0
+             :max 100
+             :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"))
+    
+    (box :class "mic-section"
+         :orientation "v"
+         :spacing 6
+      (box :class "slider-header"
+           :orientation "h"
+        (label :text "" :class "icon")
+        (label :text "Microphone" :class "label")
+        (label :text "${mic-volume}%" :class "value"))
+      
+      (scale :class "mic-slider"
+             :value mic-volume
+             :min 0
+             :max 100
+             :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"))
+    
+    (box :class "separator")
+    
+    (box :class "outputs-section"
+         :orientation "v"
+         :spacing 6
+      (label :text "Output Device" :class "section-title" :halign "start")
+      (scroll :height 120
+              :vscroll true
+              :hscroll false
+        (box :orientation "v"
+             :spacing 4
+          (literal :content audio-outputs))))))
+
+(defpoll volume :interval "100ms"
+  "scripts/get-volume.sh")
+
+(defpoll mic-volume :interval "100ms"
+  "scripts/get-mic-volume.sh")
+
+(defpoll audio-outputs :interval "1s"
+  "scripts/get-outputs.sh")

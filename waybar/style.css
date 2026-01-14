@@ -1,6 +1,7 @@
 * {
-    font-family: "FiraCode Nerd Font", sans-serif;
-    font-size: 13px;
+    font-family: "FiraCode Nerd Font";
+    font-size: 14px;  /* Increased from 13px */
+    font-weight: 600;  /* Bolder */
     border: none;
     border-radius: 0;
     min-height: 0;
@@ -10,6 +11,7 @@ window#waybar {
     background-color: #1E1E2E;
     color: #CDD6F4;
     border: none;
+
 }
 
 /* Ubuntu logo */
@@ -28,9 +30,11 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 12px;  /* More padding for bigger clickable area */
     color: #6C7086;
     background-color: transparent;
+    font-size: 15px;  /* Larger workspace numbers */
+    font-weight: bold;
     transition: all 0.2s;
 }
 
@@ -39,15 +43,37 @@ window#waybar {
     background-color: #45475A;
 }
 
+
 #workspaces button.urgent {
     color: #F38BA8;
     background-color: #45475A;
 }
 
+
 #workspaces button:hover {
     background-color: #313244;
     color: #BAC2DE;
 }
+
+#window {
+    background-color: #1E1E2E;
+    color: #89B4FA;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#window.empty {
+    background-color: transparent;
+    padding: 0;
+}
+
+
+
+
+
+
+
 
 /* Mode indicator */
 #mode {
@@ -69,37 +95,64 @@ window#waybar {
     background-color: #313244;
 }
 
+
+
+
 /* Right modules base */
+#custom-night-light,
 #network,
 #cpu,
 #temperature,
 #memory,
 #disk,
-#pulseaudio {
+#pulseaudio,
+#custom-power-profile,
+#battery,
+#backlight {
     background-color: #1E1E2E;
     padding: 0 12px;
     transition: all 0.2s;
+    font-size: 14px;  /* Consistent size */
+}
+
+
+
+/* Make icon part slightly bigger than text */
+#network .icon,
+#cpu .icon,
+#temperature .icon {
+    font-size: 100px;
 }
 
 /* Individual module colors */
 #network {
     color: #94E2D5;  /* Teal */
+    border-bottom: 2px solid #94E2D5;  /* teal */
 }
 
 #network.disconnected {
     color: #F38BA8;  /* Red */
 }
 
+
+
+/* CPU */
 #cpu {
-    color: #89B4FA;  /* Blue */
+    color: #89B4FA;  
+    border-bottom: 2px solid #89B4FA;  /* blue */
 }
 
 #temperature.cpu {
     color: #F9E2AF;  /* Yellow */
+    border-bottom: 2px solid #F9E2AF;  /* yellow */
 }
 
+
+
+/* GPU */
 #temperature.gpu {
     color: #FAB387;  /* Peach */
+    border-bottom: 2px solid #FAB387;  /* peach */
 }
 
 #temperature.critical {
@@ -111,8 +164,14 @@ window#waybar {
     50% { opacity: 0.6; }
 }
 
+
+
+
+
+/* Memory */
 #memory {
     color: #A6E3A1;  /* Green */
+    border-bottom: 2px solid #A6E3A1;  /* green */
 }
 
 #memory.warning {
@@ -123,8 +182,11 @@ window#waybar {
     color: #F38BA8;
 }
 
+
+/* Disk */
 #disk {
     color: #F5C2E7;  /* Pink */
+    border-bottom: 2px solid #F5C2E7;  /* pink */
 }
 
 #disk.warning {
@@ -135,21 +197,30 @@ window#waybar {
     color: #F38BA8;
 }
 
+
+
+/* PulseAudio & Microphone */
+
 #pulseaudio {
     color: #CBA6F7;  /* Mauve */
+    border-bottom: 2px solid #CBA6F7;  /* mauve */
 }
 
 #pulseaudio.muted {
     color: #6C7086;
+    border-bottom: 2px solid #6C7086;
 }
 
 #pulseaudio.microphone {
     color: #EBA0AC;  /* Flamingo */
+    border-bottom: 2px solid #EBA0AC;  /* flamingo */
 }
 
 #pulseaudio.source-muted {
     color: #6C7086;
 }
+
+
 
 /* Hover effects */
 #network:hover,
@@ -160,6 +231,105 @@ window#waybar {
 #pulseaudio:hover {
     background-color: #313244;
 }
+
+
+
+#custom-night-light {
+    background-color: #1E1E2E;
+    color: #F9E2AF;  /* yellow/orange */
+    padding: 0 12px;
+    border-bottom: 2px solid #F9E2AF;
+    transition: all 0.2s;
+}
+
+#custom-night-light:hover {
+    background-color: #313244;
+}
+
+
+
+
+
+
+/* LAPTOP ONLY CSS MODULES */
+/* Backlight */
+#backlight {
+    background-color: #1E1E2E;
+    color: #F9E2AF;  /* yellow */
+    padding: 0 12px;
+    border-bottom: 2px solid #F9E2AF;
+    transition: all 0.2s;
+}
+
+#backlight:hover {
+    background-color: #313244;
+}
+
+/* Battery */
+#battery {
+    background-color: #1E1E2E;
+    color: #A6E3A1;  /* green */
+    padding: 0 12px;
+    border-bottom: 2px solid #A6E3A1;
+    transition: all 0.2s;
+}
+
+#battery.charging {
+    color: #89B4FA;  /* blue when charging */
+    border-bottom-color: #89B4FA;
+}
+
+#battery.warning {
+    color: #F9E2AF;  /* yellow */
+    border-bottom-color: #F9E2AF;
+}
+
+#battery.critical {
+    color: #F38BA8;  /* red */
+    border-bottom-color: #F38BA8;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#battery:hover {
+    background-color: #313244;
+}
+
+/* Bluetooth */
+#bluetooth {
+    background-color: #1E1E2E;
+    color: #89DCEB;  /* sky blue */
+    padding: 0 12px;
+    border-bottom: 2px solid #89DCEB;
+    transition: all 0.2s;
+}
+
+#bluetooth.disabled {
+    color: #6C7086;  /* gray when off */
+    border-bottom-color: #6C7086;
+}
+
+#bluetooth:hover {
+    background-color: #313244;
+}
+
+
+/* Power profile */
+#custom-power-profile {
+    background-color: #1E1E2E;
+    color: #FAB387;  /* peach/orange */
+    padding: 0 12px;
+    border-bottom: 2px solid #FAB387;
+    transition: all 0.2s;
+}
+
+#custom-power-profile:hover {
+    background-color: #313244;
+}
+
+
+
+
+
 
 /* System tray */
 #tray {
