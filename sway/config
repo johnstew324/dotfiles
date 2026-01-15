@@ -229,9 +229,15 @@ bindsym $mod+Shift+s exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/scre
 # LOCK SCREEN
 # ============================================================================
 
-bindsym $mod+Escape exec swaylock -f -c 1e1e2e
+bindsym $mod+Escape exec ~/dotfiles/sway/scripts/gtklock-blur.sh
 
 
+
+exec swayidle -w \
+    timeout 300 'gtklock -d' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'gtklock -d'
 
 
 
@@ -246,6 +252,11 @@ exec kitty --class btop-monitor -e btop
 
 exec wlsunset -l 53.3 -L -6.3  # Dublin coordinates - auto adjusts at sunset/sunrise
 
+exec swayidle -w \
+    timeout 600 '~/dotfiles/sway/scripts/gtklock-blur.sh' \
+    timeout 1200 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep '~/dotfiles/sway/scripts/gtklock-blur.sh'
 
 
 
@@ -255,7 +266,6 @@ exec wlsunset -l 53.3 -L -6.3  # Dublin coordinates - auto adjusts at sunset/sun
 
 bindsym $mod+Shift+grave move scratchpad
 bindsym $mod+grave scratchpad show
-
 
 
 
@@ -301,3 +311,18 @@ default_border pixel 2
 ## Night Light Toggle
 ## maybe change to something else but this will do for now
 bindsym $mod+Shift+n exec ~/dotfiles/sway/scripts/toggle-night-light.sh
+
+
+
+# ============================================================================
+# AUDIO & BRIGHTNESS CONTROL
+# ============================================================================
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% z
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
