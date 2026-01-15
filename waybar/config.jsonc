@@ -38,36 +38,35 @@
         "max-length": 50,
         "rewrite": {
             // Chrome/Chromium
-            "(.*) - Google Chrome": " $1",
-            "Google Chrome": "<span foreground='#89B4FA'></span>  Chrome",
+            "(.*) - Google Chrome": "<span size='16pt' foreground='#F38BA8'></span>  $1", 
+            "Google Chrome": "<span size='16pt' foreground='#F38BA8'></span>  Chrome",
             
             // VS Code
-            "(.*) - Visual Studio Code": "  $1",
-            "Visual Studio Code": "<span foreground='#89B4FA'></span>  VS Code",
+            "(.*) - Visual Studio Code": "<span size='10pt' foreground='#A6E3A1'></span>  $1",
+            "Visual Studio Code": "<span size='10pt' foreground='#A6E3A1'></span>  VS Code",
             
             // Firefox
-            "(.*) — Mozilla Firefox": "󰈹  $1",
-            "(.*) - Mozilla Firefox": "󰈹  $1",
+            "(.*) — Mozilla Firefox": "<span size='14pt' foreground='#94E2D5'>󰈹</span>  $1",
+            "(.*) - Mozilla Firefox": "<span size='14pt' foreground='#94E2D5'>󰈹</span>  $1",
             
             // Kitty terminal - match the hostname pattern
-            "john-stewart@StewUnix:(.*)": "<span foreground='#A6E3A1'></span>  ~$1",
-            
+            "john-stewart@StewUnix:(.*)": "<span size='10pt' foreground='#94E2D5'></span>  ~$1",
+
             // Ranger
-            "ranger": "<span foreground='#F5C2E7'>󰉋 </span>  Files",
+            "ranger": "<span size='14pt' foreground='#F5C2E7'>󰉋</span>  Files",
             
             // btop
-            "btop": "<span foreground='#F9E2AF'></span>  Monitor",
+            "btop": "<span size='12pt' foreground='#F9E2AF'></span>  Monitor",
 
-            
             // Discord
-            "(.*) - Discord": "<span foreground='#CBA6F7'></span>  $1",
-            "Discord": "<span foreground='#CBA6F7'></span>  Discord",
+            "(.*) - Discord": "<span size='10pt' foreground='#5865F2'></span>  $1",
+            "Discord": "<span size='10pt' foreground='#5865F2'></span>  Discord",
             
             // Spotify
             // Spotify - green
-            "Spotify Free": "<span foreground='#A6E3A1'>󰓇</span>  Spotify",
-            "Spotify Premium": "<span foreground='#A6E3A1'>󰓇</span>  Spotify",
-            "Spotify": "<span foreground='#A6E3A1'>󰓇</span>  Spotify"
+            "Spotify Free": "<span size='12pt' foreground='#1DB954'>󰓇</span>  Spotify",
+            "Spotify Premium": "<span size='12pt' foreground='#1DB954'>󰓇</span>  Spotify",
+            "Spotify": "<span size='12pt' foreground='#1DB954'>󰓇</span>  Spotify"
         }
     },
     
@@ -216,7 +215,7 @@
     
 
 
-/// LAPTOP MODULES ///
+    /// LAPTOP MODULES ///
 
     // Backlight module - only appears if hardware exists
     "backlight": {

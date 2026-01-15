@@ -18,7 +18,7 @@
 
 * [ ] mod + esc ??! i never binded this !!! what does it do ... 
 * [ ] Needed a lock screen mod 
-* [ ] The startup screen needs to change 
+* [ ] The startup/lock screen/ needs to change
 * [ ] quicker start up ?? 
 * [x] Float windows 
 * [ ] Workstation work around thinking 
