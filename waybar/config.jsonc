@@ -20,11 +20,8 @@
     
     "sway/workspaces": {
         "format": "{name}",
-        "format-icons": {
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        },
+        "disable-scroll": false,
+        "all-outputs": true,
         "persistent-workspaces": {
             "1": [],
             "2": [],
@@ -37,22 +34,43 @@
 
     // Shows active window title/icon
     "sway/window": {
-        "format": "  {}",
+        "format": "{}",
         "max-length": 50,
         "rewrite": {
-            "(.*) — Mozilla Firefox": "󰈹 $1",
-            "(.*) - Google Chrome": "󰊯 $1",
-            "(.*) - Visual Studio Code": " $1",
-            "kitty": " Terminal",
-            "ranger": "󰉋 Files",
-            "btop": " Monitor",
-            "Spotify": "󰓇 Spotify",
-            "Discord": " Discord"
+            // Chrome/Chromium
+            "(.*) - Google Chrome": " $1",
+            "Google Chrome": "<span foreground='#89B4FA'></span>  Chrome",
+            
+            // VS Code
+            "(.*) - Visual Studio Code": "  $1",
+            "Visual Studio Code": "<span foreground='#89B4FA'></span>  VS Code",
+            
+            // Firefox
+            "(.*) — Mozilla Firefox": "󰈹  $1",
+            "(.*) - Mozilla Firefox": "󰈹  $1",
+            
+            // Kitty terminal - match the hostname pattern
+            "john-stewart@StewUnix:(.*)": "<span foreground='#A6E3A1'></span>  ~$1",
+            
+            // Ranger
+            "ranger": "<span foreground='#F5C2E7'>󰉋 </span>  Files",
+            
+            // btop
+            "btop": "<span foreground='#F9E2AF'></span>  Monitor",
+
+            
+            // Discord
+            "(.*) - Discord": "<span foreground='#CBA6F7'></span>  $1",
+            "Discord": "<span foreground='#CBA6F7'></span>  Discord",
+            
+            // Spotify
+            // Spotify - green
+            "Spotify Free": "<span foreground='#A6E3A1'>󰓇</span>  Spotify",
+            "Spotify Premium": "<span foreground='#A6E3A1'>󰓇</span>  Spotify",
+            "Spotify": "<span foreground='#A6E3A1'>󰓇</span>  Spotify"
         }
     },
-
-
-
+    
 
 
     // Clock
@@ -74,13 +92,13 @@
 
     // Network
     "network": {
-        "format-wifi": "󰖩  {signalStrength}%",
-        "format-ethernet": "󰈀  LAN",
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-ethernet": "󰈀 LAN",
         "format-disconnected": "󰖪",
 
-        "tooltip-format-wifi": "󰖩  {essid}\n{ipaddr}\nSignal: {signalStrength}%",
-        "tooltip-format-ethernet": "󰈀  {ifname}\n{ipaddr}",
-        "tooltip-format-disconnected": "󰖪  Disconnected",
+        "tooltip-format-wifi": "󰖩 {essid}\n{ipaddr}\nSignal: {signalStrength}%",
+        "tooltip-format-ethernet": "󰈀 {ifname}\n{ipaddr}",
+        "tooltip-format-disconnected": "󰖪 Disconnected",
 
         "on-click": "nm-connection-editor",
         "interval": 5

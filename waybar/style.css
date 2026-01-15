@@ -27,13 +27,14 @@ window#waybar {
 #workspaces {
     background-color: #1E1E2E;
     margin: 0;
+    padding-right: 8px;
 }
 
 #workspaces button {
-    padding: 0 12px;  /* More padding for bigger clickable area */
+    padding: 0 12px;
     color: #6C7086;
     background-color: transparent;
-    font-size: 15px;  /* Larger workspace numbers */
+    font-size: 15px;
     font-weight: bold;
     transition: all 0.2s;
 }
@@ -57,15 +58,18 @@ window#waybar {
 
 #window {
     background-color: #1E1E2E;
-    color: #89B4FA;
+    color: #89B4FA;  /* default blue */
     padding: 0 16px;
-    font-size: 13px;
-    font-weight: 500;
+    margin-left: 8px;
+    font-size: 14px;  /* Increased from 13px */
+    font-weight: 500;  /* Bolder */
+    border-left: 2px solid #313244;
 }
 
 #window.empty {
-    background-color: transparent;
     padding: 0;
+    margin: 0;
+    border: none;
 }
 
 

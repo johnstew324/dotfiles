@@ -134,7 +134,6 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # ============================================================================
 
 # 1 = Terminal/Coding (default, no assignment needed)
-assign [app_id="kitty"] workspace 1
 assign [class="Code"] workspace 1
 assign [app_id="code"] workspace 1
 

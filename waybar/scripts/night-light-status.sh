@@ -17,5 +17,5 @@ elif [ $hour -ge 12 ] && [ $hour -lt 18 ]; then
 elif [ $hour -ge 18 ] && [ $hour -lt 21 ]; then
     echo ""  # sunset/evening (6pm-9pm)
 else
-    echo ""  # moon/night (9pm-6am)
+    echo ""  # moon/night (9pm-6am)
 fi
