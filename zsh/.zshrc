@@ -132,3 +132,5 @@ source $ZSH/oh-my-zsh.sh
 #alias pipreq='pip freeze > requirements.txt'
 #alias pipinst='pip install -r requirements.txt'
 
+export XCURSOR_THEME=Bibata-Modern-Ice
+export XCURSOR_SIZE=14
