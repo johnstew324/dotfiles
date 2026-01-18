@@ -50,6 +50,11 @@ set $filemanager kitty --class files-manager -e ranger
 # OUTPUT CONFIGURATION
 # ============================================================================
 
+#Laptop Config
+output eDP-1 bg ~/dotfiles/wallpapers/yosemite_night_peak.jpg fill
+
+
+##Desktop config
 output DP-3 mode 1920x1080@144.001Hz
 output DP-3 bg ~/dotfiles/wallpapers/yosemite_night_peak.jpg fill
 
@@ -327,7 +332,7 @@ bindsym $mod+Shift+n exec ~/dotfiles/sway/scripts/toggle-night-light.sh
 
 
 # ============================================================================
-# AUDIO & BRIGHTNESS CONTROL
+# AUDIO & BRIGHTNESS CONTROL - (Desktop - XF86 keys)
 # ============================================================================
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% z
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -338,3 +343,25 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Brightness
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+
+
+
+# ============================================================================
+# FUNCTION KEYS (Laptop - regular F-keys)
+# ============================================================================
+
+# Volume (F1-F3)
+bindsym F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+# Brightness (F4-F5)
+bindsym F4 exec light -U 5
+bindsym F5 exec light -A 5
+
+# Lock (F9)
+bindsym F9 exec ~/dotfiles/sway/scripts/gtklock-blur.sh
+
+# Webcam toggle (F10)
+bindsym F10 exec notify-send "Webcam toggle"

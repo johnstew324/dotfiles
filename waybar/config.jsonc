@@ -5,13 +5,16 @@
     "spacing": 0,
     
     "modules-left": ["custom/logo", "sway/workspaces", "sway/window", "sway/mode"],
-    "modules-center": ["clock", "tray"],
-    "modules-right": ["custom/night-light","network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "backlight", "pulseaudio", "pulseaudio#microphone"],
+    "modules-center": ["tray","clock"],
+    //"modules-right": ["custom/night-light","network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "backlight", "pulseaudio", "pulseaudio#microphone"],
     // laptop modules
-    // "modules-right": ["custom/power-profile", "backlight", "battery", "custom/night-light", "network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "pulseaudio", "pulseaudio#microphone", "tray"],
+    "modules-right": [ "custom/night-light","backlight", "network", "cpu", "temperature#cpu", "memory", "disk", "pulseaudio", "pulseaudio#microphone", "bluetooth", "custom/power-profile", "battery"],
+    
+    
+    
     // Ubuntu logo
     "custom/logo": {
-        "format": "",
+        "format": "",
         "tooltip": false
     },
 
@@ -114,28 +117,30 @@
     
     // CPU Temperature (hwmon0 = k10temp)
     "temperature#cpu": {
-        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+        "hwmon-path-fallbacks": [
+            "/sys/class/hwmon/hwmon0/temp1_input",  // Desktop k10temp
+            "/sys/class/hwmon/hwmon4/temp1_input"   // Laptop k10temp
+        ],
         "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", "", "", ""], // coolest to hottest
-
+        "format-icons": ["", "", "", "", ""],
         "temperature-thresholds": [40, 55, 70, 80],
         "critical-threshold": 80,
         "tooltip-format": "CPU Temp: {temperatureC}°C",
-
         "on-click": "swaymsg workspace 4"
     },
     
 
 
     // GPU Temperature (hwmon1 = amdgpu)
+    // GPU Temperature  
     "temperature#gpu": {
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "hwmon-path-fallbacks": [
+            "/sys/class/hwmon/hwmon1/temp1_input",  // Desktop amdgpu
+            "/sys/class/hwmon/hwmon7/temp1_input"   // Laptop amdgpu
+        ],
         "format": "{icon} {temperatureC}°C",
-        
-        "format-icons": ["", "", "", "", ""], 
-        
+        "format-icons": ["", "", "", "", ""],
         "temperature-thresholds": [45, 60, 75, 85],
-
         "critical-threshold": 85,
         "tooltip-format": "GPU Temp: {temperatureC}°C"
     },
@@ -144,7 +149,7 @@
     // Memory
     "memory": {
         // add memory icon
-        "format": " {used:0.1f}G/{total:0.1f}G",
+        "format": "󰍛 {used:0.1f}G/{total:0.1f}G",
         "interval": 5,
         "tooltip-format": "RAM: {percentage}%\nUsed: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
         "on-click": "swaymsg workspace 4",
@@ -191,8 +196,8 @@
     // Microphone
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
+        "format-source": " {volume}%",           // Microphone icon when unmuted
+        "format-source-muted": " muted",      // Muted microphone icon
         "on-click": "pavucontrol -t 4",
         "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
         "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +2%",
@@ -226,6 +231,8 @@
         "tooltip-format": "Brightness: {percent}%"
     },
 
+
+
     // Battery
     "battery": {
         "states": {
@@ -248,7 +255,8 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-        "on-click": "blueman-manager"
+        "on-click": "blueman-manager",
+        "on-click-right": "~/dotfiles/waybar/scripts/bluetooth-toggle.sh"
     },
 
     // Power profiles (performance/balanced/power-saver)

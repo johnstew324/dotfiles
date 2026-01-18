@@ -20,7 +20,7 @@ window#waybar {
     color: #94E2D5;
     padding: 0 16px 0 8px;  /* top right bottom left - less padding on left */
     margin-left: 0px;  /* Negative margin pulls it left */
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -215,7 +215,7 @@ window#waybar {
     border-bottom: 2px solid #CBA6F7;  /* mauve */
 }
 
-#pulseaudio.muted {
+#pulseaudio.muted:not(.microphone) {
     color: #6C7086;
     border-bottom: 2px solid #6C7086;
 }
@@ -225,8 +225,9 @@ window#waybar {
     border-bottom: 2px solid #EBA0AC;  /* flamingo */
 }
 
-#pulseaudio.source-muted {
+#pulseaudio.microphone.source-muted {
     color: #6C7086;
+    border-bottom: 2px solid #6C7086;
 }
 
 
