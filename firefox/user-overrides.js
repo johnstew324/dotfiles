@@ -9,6 +9,14 @@ user_pref("browser.startup.page", 1); // 1 = restore previous session
 user_pref("browser.startup.homepage", "about:home");
 user_pref("browser.newtabpage.enabled", true);
 
+
+
+// === CLEAN HOMEPAGE ===
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // kill Pocket
+user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // kill shortcuts
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+
 // === SEARCH ===
 // DuckDuckGo set manually in Firefox settings, but disable search suggestions
 user_pref("browser.search.suggest.enabled", false);
