@@ -25,5 +25,6 @@
         "plaintext": false,
         "markdown": true,
         "scminput": false
-    }
+    },
+    "explorer.confirmDelete": false
 }

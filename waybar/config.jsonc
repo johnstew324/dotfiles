@@ -6,9 +6,9 @@
     
     "modules-left": ["custom/logo", "sway/workspaces", "sway/window", "sway/mode"],
     "modules-center": ["tray","clock"],
-    //"modules-right": ["custom/night-light","network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "backlight", "pulseaudio", "pulseaudio#microphone"],
+    "modules-right": ["custom/night-light","network", "cpu", "temperature#cpu", "temperature#gpu", "memory", "disk", "backlight", "pulseaudio", "pulseaudio#microphone"],
     // laptop modules
-    "modules-right": [ "custom/night-light","backlight", "network", "cpu", "temperature#cpu", "memory", "disk", "pulseaudio", "pulseaudio#microphone", "bluetooth", "custom/power-profile", "battery"],
+    //"modules-right": [ "custom/night-light","backlight", "network", "cpu", "temperature#cpu", "memory", "disk", "pulseaudio", "pulseaudio#microphone", "bluetooth", "custom/power-profile", "battery"],
     
     
     
@@ -115,12 +115,13 @@
         "on-click": "swaymsg workspace 4"
     },
     
+
+
+
     // CPU Temperature (hwmon0 = k10temp)
     "temperature#cpu": {
-        "hwmon-path-fallbacks": [
-            "/sys/class/hwmon/hwmon0/temp1_input",  // Desktop k10temp
-            "/sys/class/hwmon/hwmon4/temp1_input"   // Laptop k10temp
-        ],
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        //"hwmon-path" : "/sys/class/hwmon/hwmon4/temp1_input"  // Laptop k10temp
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["", "", "", "", ""],
         "temperature-thresholds": [40, 55, 70, 80],
@@ -130,14 +131,10 @@
     },
     
 
-
     // GPU Temperature (hwmon1 = amdgpu)
-    // GPU Temperature  
     "temperature#gpu": {
-        "hwmon-path-fallbacks": [
-            "/sys/class/hwmon/hwmon1/temp1_input",  // Desktop amdgpu
-            "/sys/class/hwmon/hwmon7/temp1_input"   // Laptop amdgpu
-        ],
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "hwmon-path": "/sys/class/hwmon/hwmon7/temp1_input"  // Laptop amdgpu
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["", "", "", "", ""],
         "temperature-thresholds": [45, 60, 75, 85],

@@ -31,3 +31,9 @@ user_pref("browser.sessionstore.resume_from_crash", true);
 user_pref("privacy.clearOnShutdown.history", false); // keep history between sessions
 user_pref("privacy.clearOnShutdown.cookies", false); // stay logged in
 user_pref("privacy.clearOnShutdown.sessions", false);
+
+
+
+// Override arkenfox - restore normal download behaviour
+user_pref("browser.download.useDownloadDir", true);
+user_pref("browser.download.dir", "/home/john-stewart/Downloads");
