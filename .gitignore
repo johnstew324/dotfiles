@@ -10,3 +10,7 @@
 .env
 *.key
 *.pem
+
+# ranger files
+ranger/commands.py
+ranger/commands_full.py
